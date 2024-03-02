@@ -1,7 +1,11 @@
-
+.temp := temp
 
 ########################################
-# other makefile include
+# include other makefile
+########################################
+
+########################################
+# public
 ########################################
 
 PACKAGE_MANAGER := brew
@@ -14,8 +18,8 @@ PACKAGE_MANAGER := brew
 .k9s := $(shell command -v k9s 2> /dev/null)
 .yq := $(shell command -v yq 2> /dev/null)
 .jq := $(shell command -v jq 2> /dev/null)
-.PHONY: check-tools
 
+.PHONY: check-tools
 check-tools: check-kubectl \
 	check-helm \
 	check-terraform \
@@ -25,6 +29,10 @@ check-tools: check-kubectl \
 	check-k9s \
 	check-yq \
 	check-jq
+
+########################################
+# private
+########################################
 
 check-kubectl:
 	@if [ -z "${.kubectl}" ]; then \
